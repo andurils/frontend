@@ -48,7 +48,7 @@
                             <a class="trigger" @click='toggleTag'>
                                 {{ isfold?'展开':'收起' }}
                                 <Icon :type="isfold ?'chevron-down':'chevron-up' "></Icon>
-                            </a> 
+                            </a>
                             <!-- 折叠展开 结束-->
 
                         </div>
@@ -134,7 +134,7 @@
                     tagId: 't13',
                     tagName: '我是长长长长长长长长长长标签',
                     checked: false
-                } 
+                }
                 ]
             },
             computed: {
@@ -155,6 +155,7 @@
                                 index].checked) :
                                 true;
                     });
+                    $vm.isTagSelectAll($vm);
                 },
                 //折叠展开操作
                 toggleTag: function () {
@@ -174,7 +175,14 @@
                     });
                 },
                 //判断是否全选
-                isTagSelectAll: function () {
+                isTagSelectAll: function (vm) {
+                    var selectedCount = vm.tags.filter(function (item) {
+                        return item.checked === true;
+                    }).length;
+                    var tagTotal = vm.tags.length;
+                    //选中个数与标签总数不等  全选取消选择操作
+                    if (selectedCount !== tagTotal)
+                        vm.selectAll = false;
 
                 }
 

@@ -1,0 +1,38 @@
+#app {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.mlsc-tagfilter-gourp {
+    padding: 4px 7px;
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1;
+    color: #495060;
+    border: 1px solid #dddee1;
+    border-radius: 6px;
+}
+
+.mlsc-tag {
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    margin: 2px 4px 2px 0;
+    padding: 0 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    vertical-align: middle;
+    opacity: 1;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.mlsc-tag:hover {
+    opacity: .85;
+}
+
+.mlsc-tag-blue {
+    background: #2d8cf0;
+    color: #fff;
+    border: 0;
+}

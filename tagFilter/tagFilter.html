@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>vue tagFilter example</title>
+    <link rel="stylesheet" type="text/css" href="../assets/iview.css">
+    <script type="text/javascript" src="../assets/vue.min.js"></script>
+    <script type="text/javascript" src="../assets/iview.min.js"></script>
+    <link href="tagFilter.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <Modal v-model="visible" title="Welcome">欢迎使用 iView</Modal>
+        <div class="mlsc-tagfilter-gourp">
+            热门标签分类：
+
+            <div v-for="item in tags" :class="item.checked ? 'mlsc-tag  mlsc-tag-blue mlsc-tag-checked' : 'mlsc-tag' " :key="item.tagId"
+                @click="tagSelect($event,item.tagId)">
+                <!---->
+                <span class="mlsc-tag-text">{{item.tagName}}</span>
+                <!---->
+            </div>
+
+            <!-- <Tag v-for="item in tags" :key="item.tagName" :name="item.tagName" checkable :checked="false" color="blue" v-on:click="openImageProxy($event)">{{item.tagName}}</Tag> -->
+        </div>
+        <Tag type="border" closable color="blue">标签一</Tag>
+        <div class="mlsc-tag  mlsc-tag-blue mlsc-tag-checked">
+            <!---->
+            <span class="mlsc-tag-text">test hover </span>
+            <!---->
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                visible: false,
+                tags: [
+                    { tagId: 't1', tagName: '我是标签标签', checked: false },
+                    { tagId: 't2', tagName: '标签', prop: 'TODO' },
+                    { tagId: 't3', tagName: '我是标签标签', prop: 'TODO' },
+                    { tagId: 't4', tagName: '我是长长长长长长长长长长标签', prop: 'TODO' },
+                    { tagId: 't5', tagName: '标签', prop: 'TODO' },
+                    { tagId: 't6', tagName: '我是标签标签', prop: 'TODO' },
+                    { tagId: 't7', tagName: '我是长长长长长长长长长长标签', prop: 'TODO' },
+                    { tagId: 't8', tagName: '标签', prop: 'TODO' },
+                    { tagId: 't9', tagName: '我是标签标签', prop: 'TODO' },
+                    { tagId: 't10', tagName: '我是长长长长长长长长长长标签', prop: 'TODO' },
+                    { tagId: 't11', tagName: '标签', prop: 'TODO' },
+                    { tagId: 't12', tagName: '我是标签标签', prop: 'TODO' },
+                    { tagId: 't13', tagName: '我是长长长长长长长长长长标签', prop: 'TODO' }
+                ],
+                tagSelected: [
+
+                ]
+            },
+            methods: {
+                show: function () {
+                    this.visible = true;
+                },
+                handleClose2(event, name) {
+                    this.visible = true;
+                },
+                tagSelect: function (event, tagId) {
+                    var $vm = this;
+                    $vm.tags.forEach(function (item, index, arr) {
+                        if (item.tagId === tagId)
+                            arr[index].checked = (arr[index].checked !== undefined) ? (!arr[index].checked) : true;
+                    });
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

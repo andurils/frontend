@@ -7,54 +7,40 @@
     <link rel="stylesheet" type="text/css" href="../assets/iview.css">
     <script type="text/javascript" src="../assets/vue.min.js"></script>
     <script type="text/javascript" src="../assets/iview.min.js"></script>
-    <link href="tagFilter.css" rel="stylesheet" type="text/css" />
     <link href="tagFilter-ant.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
     <div id="app">
-        <Modal v-model="visible" title="Welcome">欢迎使用 iView</Modal>
-        <div class="mlsc-tagfilter-gourp  mlsc-tagfilter-gourp-trigger">
-            热门标签分类：
-
-            <div v-for="item in tags" :class="item.checked ? 'mlsc-tag  mlsc-tag-blue mlsc-tag-checked' : 'mlsc-tag' " :key="item.tagId"
-                @click="tagSelect($event,item.tagId)">
-                <!---->
-                <span class="mlsc-tag-text">{{item.tagName}}{{item.checked}}</span>
-                <!---->
+        <div class="header">
+            <div class="title">
+                <h1>Tag 选择实现</h1>
             </div>
-            <a class="trigger">展开
-                <i class="anticon anticon-down"></i>
-            </a>
-            <!-- <Tag v-for="item in tags" :key="item.tagName" :name="item.tagName" checkable :checked="false" color="blue" v-on:click="openImageProxy($event)">{{item.tagName}}</Tag> -->
         </div>
         <!-- <Tag type="border" closable color="blue">标签一</Tag> -->
-        <div class="mlsc-tag  mlsc-tag-blue mlsc-tag-checked">
-            <!---->
-            <span class="mlsc-tag-text">test hover </span>
-            <!---->
-        </div>
-        <div class="standardFormRow">
-            <div class="label">
-                <span>所属类目： </span>
-            </div>
-            <div class="content">
-                <div class="ant-form-item-control-wrapper">
-                    <div class="tagSelect hasExpandTag expanded">
-                        <div class="ant-tag ant-tag-checkable">全部</div>
-                        <div v-for="item in tags" :class="item.checked ? 'ant-tag ant-tag-checkable ant-tag-checkable-checked' : 'ant-tag ant-tag-checkable' "
-                            :key="item.tagId" @click="tagSelect($event,item.tagId)">
-                            <!---->
-                            {{item.tagName}}{{item.checked}}
-                            <!---->
+        <div class="content-wrapper">
+            <div class="mlsc-tagfilter-gourp">
+                <div class="label">
+                    <span>所属类目： </span>
+                </div>
+                <div class="content">
+                    <div class="mlsc-tag-item-control-wrapper">
+                        <div class="tagSelect hasExpandTag expanded">
+                            <div class="mlsc-tag mlsc-tag-checkable">全部</div>
+                            <div v-for="item in tags" :class="item.checked ? 'mlsc-tag mlsc-tag-checkable mlsc-tag-checkable-checked' : 'mlsc-tag mlsc-tag-checkable' "
+                                :key="item.tagId" @click="tagSelect($event,item.tagId)">
+                                <!---->
+                                {{item.tagName}}{{item.checked}}
+                                <!---->
+                            </div>
+
+                            <!-- 收缩 开始 -->
+                            <a class="trigger">展开
+                                <i class="anticon anticon-down"></i>
+                            </a>
+                            <!--收缩 开始-->
+
                         </div>
-
-                        <!-- 收缩 开始 -->
-                        <a class="list-trigger">展开
-                            <i class="anticon anticon-down"></i>
-                        </a>
-                        <!--收缩 开始-->
-
                     </div>
                 </div>
             </div>

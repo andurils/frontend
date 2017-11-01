@@ -4,9 +4,17 @@
 <head>
     <meta charset="utf-8">
     <title>vue tagFilter example</title>
-    <link rel="stylesheet" type="text/css" href="../assets/iview.css">
+    <link rel="stylesheet" type="text/css" href="../assets/styles/iview.css">
     <script type="text/javascript" src="../assets/vue.min.js"></script>
     <script type="text/javascript" src="../assets/iview.min.js"></script>
+
+    <!-- 引入Vue -->
+    <!-- <script src="http://vuejs.org/js/vue.min.js"></script> -->
+    <!-- 引入样式 -->
+    <!-- <link rel="stylesheet" href="http://unpkg.com/iview/dist/styles/iview.css"> -->
+    <!-- 引入组件库 -->
+    <!-- <script src="http://unpkg.com/iview/dist/iview.min.js"></script> -->
+    <!-- 组件自定义样式 -->
     <link href="tagFilter-ant.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -15,6 +23,7 @@
         <div class="header">
             <div class="title">
                 <h1>Tag 选择实现</h1>
+                <h4>&nbsp;v0.1</h4>
             </div>
         </div>
         <!-- <Tag type="border" closable color="blue">标签一</Tag> -->
@@ -25,19 +34,23 @@
                 </div>
                 <div class="content">
                     <div class="mlsc-tag-item-control-wrapper">
-                        <div class="tagSelect hasExpandTag expanded">
+
+                        <div :class="toggle ?'tagSelect hasExpandTag':'tagSelect hasExpandTag expanded'  ">
                             <div class="mlsc-tag mlsc-tag-checkable">全部</div>
                             <div v-for="item in tags" :class="item.checked ? 'mlsc-tag mlsc-tag-checkable mlsc-tag-checkable-checked' : 'mlsc-tag mlsc-tag-checkable' "
                                 :key="item.tagId" @click="tagSelect($event,item.tagId)">
                                 <!---->
-                                {{item.tagName}}{{item.checked}}
+                                {{item.tagName}}
                                 <!---->
                             </div>
 
                             <!-- 收缩 开始 -->
-                            <a class="trigger">展开
-                                <i class="anticon anticon-down"></i>
+                            <a class="trigger" @click='toggleTag'>
+                                {{ toggle?'展开':'收起' }}
+                                <Icon :type="toggle ?'chevron-down':'chevron-up' "></Icon>
                             </a>
+                            <!-- <Icon type="chevron-up"></Icon> -->
+                            <!-- 收起 -->
                             <!--收缩 开始-->
 
                         </div>
@@ -51,72 +64,72 @@
         var vobj = new Vue({
             el: '#app',
             data: {
-                visible: false,
+                toggle: true,
                 tags: [{
-                        tagId: 't1',
-                        tagName: '我是标签标签',
-                        checked: true
-                    },
-                    {
-                        tagId: 't2',
-                        tagName: '标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't3',
-                        tagName: '我是标签标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't4',
-                        tagName: '我是长长长长长长长长长长标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't5',
-                        tagName: '标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't6',
-                        tagName: '我是标签标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't7',
-                        tagName: '我是长长长长长长长长长长标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't8',
-                        tagName: '标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't9',
-                        tagName: '我是标签标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't10',
-                        tagName: '我是长长长长长长长长长长标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't11',
-                        tagName: '标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't12',
-                        tagName: '我是标签标签',
-                        checked: false
-                    },
-                    {
-                        tagId: 't13',
-                        tagName: '我是长长长长长长长长长长标签',
-                        checked: false
-                    }
+                    tagId: 't1',
+                    tagName: '我是标签标签',
+                    checked: true
+                },
+                {
+                    tagId: 't2',
+                    tagName: '标签',
+                    checked: false
+                },
+                {
+                    tagId: 't3',
+                    tagName: '我是标签标签',
+                    checked: false
+                },
+                {
+                    tagId: 't4',
+                    tagName: '我是长长长长长长长长长长标签',
+                    checked: false
+                },
+                {
+                    tagId: 't5',
+                    tagName: '标签',
+                    checked: false
+                },
+                {
+                    tagId: 't6',
+                    tagName: '我是标签标签',
+                    checked: false
+                },
+                {
+                    tagId: 't7',
+                    tagName: '我是长长长长长长长长长长标签',
+                    checked: false
+                },
+                {
+                    tagId: 't8',
+                    tagName: '标签',
+                    checked: false
+                },
+                {
+                    tagId: 't9',
+                    tagName: '我是标签标签',
+                    checked: false
+                },
+                {
+                    tagId: 't10',
+                    tagName: '我是长长长长长长长长长长标签',
+                    checked: false
+                },
+                {
+                    tagId: 't11',
+                    tagName: '标签',
+                    checked: false
+                },
+                {
+                    tagId: 't12',
+                    tagName: '我是标签标签',
+                    checked: false
+                },
+                {
+                    tagId: 't13',
+                    tagName: '我是长长长长长长长长长长标签',
+                    checked: false
+                }
 
                 ],
                 tagSelected: [
@@ -136,9 +149,12 @@
                         if (item.tagId === tagId)
                             arr[index].checked = (arr[index].checked !== undefined) ? (!arr[
                                 index].checked) :
-                            true;
+                                true;
                     });
 
+                },
+                toggleTag: function () {
+                    this.toggle = !this.toggle;
                 }
 
             }

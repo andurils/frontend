@@ -11,6 +11,7 @@
     color: #495060;
     border: 1px solid #dddee1;
     border-radius: 6px;
+    position: relative;
 }
 
 .mlsc-tag {
@@ -36,3 +37,15 @@
     color: #fff;
     border: 0;
 }
+
+.mlsc-tagfilter-gourp .trigger {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.mlsc-tagfilter-gourp-trigger {
+    padding-right: 50px;
+}
+
+ 

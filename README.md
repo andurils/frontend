@@ -1,7 +1,12 @@
 # 前端之旅
 
-MLSC 前端工程化开发解决方案探索.
+前端工程化探索.
 
-## vue开发控件
+## HTML
 
-- 标签组选择实现
+## CSS
+less/sass
+## JavaScript
+js 犀牛书/高级编程/忍者秘籍/精粹
+vue  vue/vuex/vue-router/源码
+打包  webpack

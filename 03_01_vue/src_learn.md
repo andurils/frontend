@@ -5,8 +5,20 @@ http://jiongks.name/blog/vue-code-review/
 https://github.com/fastCreator/MVVM
 
 
-https://vuejs.org/v2/api/
+https://cn.vuejs.org/v2/api/index.html
 
+
+https://github.com/bison1994/vue-for-learning   
+https://www.cnblogs.com/kidney/p/8018226.html   
+
+MVVM原理    
+https://segmentfault.com/a/1190000006599500
+
+
+发布--订阅模式
+https://www.cnblogs.com/tugenhua0707/p/4687947.html
+https://www.jianshu.com/p/d6a6e0cdbc5c    《javascript设计模式》
+ 
 全局设计：包括全局接口、默认选项等
 vm 实例设计：包括接口设计 (vm 原型)、实例初始化过程设计 (vm 构造函数)
 

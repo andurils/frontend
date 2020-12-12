@@ -2,12 +2,14 @@ import Vue from 'vue';
 import VueRouter from 'vue-router'
 import homeRouter from './routers-ex/home.js'
 import userRouter from './routers-ex/user.js'
+import viewRouter from './routers-ex/view.js'
+import propsRouter from './routers-ex/props.js'
 
 // 路由
 Vue.use(VueRouter)
 
 // 定义 (路由) 组件。
-const notFound = {
+const NotFound = {
 	template: `
     <div>
       <h2> 404 Not Found!</h2> 
@@ -19,25 +21,14 @@ const notFound = {
 const routes = [
 	...homeRouter,
 	...userRouter,
-	{
-		path: '/parallax',
-		name: 'ParallaxScrolling',
-		component: resolve => require(['@/pages/parallax/index.vue'], resolve),
-		meta: {
-			name: '视差滚动',
-			parent: ''
-		}
-	},
-	{
-		path: '/home/:username',
-		name: 'router-home',
-		component: resolve => require(['@/pages/router-demo/home.vue'], resolve)
-	},
+	...viewRouter,
+	...propsRouter,
+
 	{
 		// 匹配所有路径
 		path: "*",
 		name: '404',
-		component: notFound
+		component: NotFound
 	}
 ]
 

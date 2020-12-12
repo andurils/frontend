@@ -1,15 +1,4 @@
-// 1. 定义 (路由) 组件。 
-//const Home = { template: '<div>This is Home</div>' }
-const Foo = {
-    template: '<div>foo</div>'
-}
-const Bar = {
-    template: '<div>This is Bar {{ $route.params.id }}</div>'
-}
-const Baz = {
-    template: '<div>baz</div>'
-}
-
+// 1. 定义 (路由) 组件。  
 
 const UserSettingsNav = {
     template: `
@@ -33,7 +22,6 @@ const UserSettings = {
         UserSettingsNav
     }
 }
-
 const UserEmailsSubscriptions = {
     template: `
 <div>
@@ -59,36 +47,43 @@ const UserProfilePreview = {
 }
 
 
+const Foo = {
+    template: '<div>foo</div>'
+}
+const Bar = {
+    template: '<div>bar</div>'
+}
+const Baz = {
+    template: '<div>baz</div>'
+}
 
-// 2. 定义路由
-// 每个路由应该映射一个组件。 其中"component" 可以是
-// 通过 Vue.extend() 创建的组件构造器，
-// 或者，只是一个组件配置对象。 
-export default [
 
-    {
-        path: '/test',
-        components: {
-            default: Foo,
-            a: Bar,
-            b: Baz
-        }
-    },
 
-    {
-        path: '/foo',
-        name: 'foo',
-        component: Foo
+// 2. 定义路由 
+export default [{
+        path: '/views',
+        component: resolve => require(['@/pages/essentials/NamedView.vue'], resolve),
+        children: [ // 嵌套命名视图
+            {
+                path: '',
+                components: {
+                    default: Foo,
+                    a: Bar,
+                    b: Baz
+                }
+            }, {
+                path: 'other',
+                components: {
+                    default: Baz,
+                    a: Bar,
+                    b: Foo
+                }
+            },
+
+        ]
     },
-    {
-        path: '/bar/:id',
-        name: 'bar',
-        component: Bar
-    },
-    // 嵌套命名视图
     {
         path: '/settings',
-        // You could also have named views at tho top
         component: UserSettings,
         children: [{
             path: 'emails',
@@ -101,5 +96,15 @@ export default [
             }
         }]
     },
-
+    {
+        path: '/foo',
+        component: Foo
+    }, {
+        path: '/bar',
+        component: Bar
+    }, {
+        path: '/baz',
+        name: 'baz',
+        component: Baz
+    },
 ]

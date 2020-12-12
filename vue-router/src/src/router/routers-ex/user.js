@@ -2,8 +2,13 @@
 const User = {
     template: `
     <div class="user">
-      <h2>User {{ $route.params.id }}</h2>
-      <router-view></router-view>
+        <router-link to="/user/foo">/user/foo</router-link>
+        <router-link to="/user/foo/profile">/user/foo/profile</router-link>
+        <router-link to="/user/foo/posts/123">/user/foo/posts/123</router-link> 
+
+        <h2>UserId {{ $route.params.id }}</h2>
+        <h2>PostId {{ $route.params.post_id }}</h2>
+        <router-view></router-view>
     </div>
   `,
     watch: {
@@ -26,16 +31,32 @@ const UserHome = {
 }
 const UserPosts = {
     template: `
-    <div>
-      <div>Posts</div>
-      <h2> Posts {{ $route.params.id }} {{ $route.params.post_id }}</h2> 
-    </div>
+<div>
+	<h3>Posts</h3>
+</div>
   `,
 }
 const UserProfile = {
     template: `
 <div>
 	<h3>Edit your profile</h3>
+</div>
+  `
+}
+
+
+const UserInfo = {
+    template: `
+<div>
+	<h3>InfoId:{{ $route.params.infoId}} / Name:{{ $route.params.username}} </h3>
+</div>
+  `
+}
+
+const UserRegister = {
+    template: `
+<div>
+	<h3> query内容  plan={{ $route.query.plan}}</h3>
 </div>
   `
 }
@@ -84,8 +105,28 @@ export default [
         ]
     },
     {
+        path: '/newuser/:username',
+        name: 'newuser',
+        component: resolve => require(['@/pages/essentials/Navigation.vue'], resolve),
+        children: [{
+                path: '',
+                component: UserHome
+            },
+            {
+                path: 'info/:infoId',
+                name: 'user-info',
+                component: UserInfo
+            },
+            {
+                path: 'register',
+                component: UserRegister
+            }
+        ]
+    },
+    {
         // 会匹配以 `/user-` 开头的任意路径
         path: '/user-*',
         component: UserMatch,
     }
+
 ]
